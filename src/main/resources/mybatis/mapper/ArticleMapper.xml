@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xinyue.blog.dao.mybaits.ArticleMapper">
+	<cache></cache>
+	<resultMap type="Article" id="ArticlePage">
+		<id column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="summary" property="summary"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="last_update_date" property="lastUpdateDate" jdbcType="TIMESTAMP"/>
+		<result column="tagIds" property="tagIds"/>
+		<result column="tagNames" property="tagNames"/>
+		<result column="cid" property="category.id"/>
+	</resultMap>
+	<select id="findArticleByPage" resultMap="ArticlePage">
+		select ac.id, ac.title, ac.summary, ac.create_date, ac.last_update_date, GROUP_CONCAT(tg.id) tagIds, GROUP_CONCAT(tg.`name`) tagNames, ac.category_id cid
+		from article ac left JOIN article_tag ag on ac.id = ag.article_id left join tag tg on ag.tag_id = tg.id
+		where ac.delete_flag = 0
+		GROUP BY ac.id ORDER BY ac.id desc LIMIT #{offset}, #{pageSize};
+	</select>
+
+	<select id="findArticleByCategoryId" resultType="Article">
+		select ac.id, ac.title, ac.create_date createDate, ac.last_update_date lastUpdateDate
+		from article ac  where ac.delete_flag = 0 and ac.category_id = #{id}
+	</select>
+
+	<select id="getTotalCount" resultType="int">
+		select count(*) from article where delete_flag = 0;
+	</select>
+
+	<select id="findNextArticle" resultType="Article">
+		SELECT ac.id, ac.title FROM article ac WHERE ac.id &gt; #{id} and ac.delete_flag = 0 ORDER BY ac.id ASC LIMIT 1;
+	</select>
+	<select id="findPreArticle" resultType="Article">
+		SELECT ac.id, ac.title FROM article ac WHERE ac.id &lt; #{id} and ac.delete_flag = 0 ORDER BY ac.id DESC LIMIT 1;
+	</select>
+
+</mapper>
+ 
+

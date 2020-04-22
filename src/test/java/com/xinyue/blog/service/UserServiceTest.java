@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.Assert;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserServiceTest {
@@ -29,7 +31,8 @@ public class UserServiceTest {
             Assert.notNull(findUser, "User should not be null");
             Assert.isTrue(insertUser.getUsername().equals(findUser.getUsername()), "User Name Should be Same");
         } else {
-            Assert.isTrue(userName.equals(findUser.getUsername()));
+            Assert.isTrue(userName.equals(findUser.getUsername()), "User name is unequal");
         }
     }
+
 }

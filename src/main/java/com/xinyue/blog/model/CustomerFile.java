@@ -1,11 +1,12 @@
 package com.xinyue.blog.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "file")
-public class CustomerFile {
+public class CustomerFile implements Serializable {
     @Id
     @GeneratedValue
     private int id;

@@ -1,10 +1,10 @@
 package com.xinyue.blog.model;
 
 import com.xinyue.blog.utils.StringUtils;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
@@ -14,7 +14,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "article")
-public class Article {
+public class Article implements Serializable {
     @Id
     @GeneratedValue
     private int id;
@@ -26,8 +26,8 @@ public class Article {
     @Basic(fetch = FetchType.LAZY)
     @Column(columnDefinition = "longtext")
     private String content;
-    private LocalDateTime createDate;
-    private LocalDateTime lastUpdateDate;
+    private Timestamp createDate;
+    private Timestamp lastUpdateDate;
     private String creator;
     private String lastUpdater;
 
@@ -42,6 +42,11 @@ public class Article {
             inverseJoinColumns = @JoinColumn(name = "tag_id"),
             joinColumns = @JoinColumn(name = "article_id"))
     private Set<Tag> tags;
+
+    @Transient
+    private String tagIds;
+    @Transient
+    private String tagNames;
 
     public int getId() {
         return id;
@@ -75,19 +80,19 @@ public class Article {
         this.content = content;
     }
 
-    public LocalDateTime getCreateDate() {
+    public Timestamp getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
     }
 
-    public LocalDateTime getLastUpdateDate() {
+    public Timestamp getLastUpdateDate() {
         return lastUpdateDate;
     }
 
-    public void setLastUpdateDate(LocalDateTime lastUpdateDate) {
+    public void setLastUpdateDate(Timestamp lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
     }
 
@@ -147,6 +152,21 @@ public class Article {
         return false;
     }
 
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
+    }
+
+    public String getTagNames() {
+        return tagNames;
+    }
+
+    public void setTagNames(String tagNames) {
+        this.tagNames = tagNames;
+    }
 
     @Override
     public String toString() {
@@ -160,6 +180,10 @@ public class Article {
                 ", creator='" + creator + '\'' +
                 ", lastUpdater='" + lastUpdater + '\'' +
                 ", deleteFlag=" + deleteFlag +
+                ", category=" + category +
+                ", tags=" + tags +
+                ", tagIds='" + tagIds + '\'' +
+                ", tagNames='" + tagNames + '\'' +
                 '}';
     }
 }

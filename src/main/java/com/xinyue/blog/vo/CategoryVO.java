@@ -50,4 +50,14 @@ public class CategoryVO {
     public void setArticleList(List<ArticleVO> articleList) {
         this.articleList = articleList;
     }
+
+    @Override
+    public String toString() {
+        return "CategoryVO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", count=" + count +
+                ", articleList=" + articleList +
+                '}';
+    }
 }

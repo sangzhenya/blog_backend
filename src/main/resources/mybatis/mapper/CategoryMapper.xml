@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xinyue.blog.dao.mybaits.CategoryMapper">
+	<cache></cache>
+	<select id="findAll" resultType="Category">
+		select cg.id id, cg.`name` name, count(*) articleCount from category cg left join article ac on cg.id = ac.category_id GROUP BY cg.id;
+	</select>
+
+	<select id="findById" resultType="Category">
+		select cg.id, cg.`name` from category cg where cg.id = #{id};
+	</select>
+
+</mapper>
+ 
+

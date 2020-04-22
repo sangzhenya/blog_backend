@@ -1,6 +1,7 @@
 package com.xinyue.blog.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -8,11 +9,14 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "category")
-public class Category {
+public class Category implements Serializable {
     @Id
     @GeneratedValue
     private int id;
     private String name;
+
+    @Transient
+    private int articleCount;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private Set<Article> articles;
@@ -48,11 +52,20 @@ public class Category {
         this.articles = articles;
     }
 
+    public int getArticleCount() {
+        return articleCount;
+    }
+
+    public void setArticleCount(int articleCount) {
+        this.articleCount = articleCount;
+    }
+
     @Override
     public String toString() {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", articleCount=" + articleCount +
                 '}';
     }
 }

@@ -2,6 +2,9 @@ package com.xinyue.blog.controller;
 
 import com.xinyue.blog.service.ArticleService;
 import com.xinyue.blog.service.CategoryService;
+import com.xinyue.blog.service.ManagerService;
+import com.xinyue.blog.service.mybaits.ArticleServiceMt;
+import com.xinyue.blog.service.mybaits.CategoryServiceMt;
 import com.xinyue.blog.utils.PageUtils;
 import com.xinyue.blog.vo.ResultVO;
 import com.xinyue.blog.vo.requestVO.RequestVO;
@@ -20,6 +23,9 @@ public class PublicController {
 
     private final ArticleService articleService;
     private final CategoryService categoryService;
+    private final CategoryServiceMt categoryServiceMt;
+    private final ArticleServiceMt articleServiceMt;
+    private final ManagerService managerService;
 
     @RequestMapping("/")
     public String info() {
@@ -28,15 +34,24 @@ public class PublicController {
     }
 
     @Autowired
-    public PublicController(ArticleService articleService, CategoryService categoryService) {
+    public PublicController(ArticleService articleService, CategoryService categoryService, CategoryServiceMt categoryServiceMt, ArticleServiceMt articleServiceMt, ManagerService managerService) {
         this.articleService = articleService;
         this.categoryService = categoryService;
+        this.categoryServiceMt = categoryServiceMt;
+        this.articleServiceMt = articleServiceMt;
+        this.managerService = managerService;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/page02", method = RequestMethod.POST)
+    public ResultVO getPageArticle(@RequestBody RequestVO requestVO) {
+        return new ResultVO(articleService.getArticleListByPage(PageUtils.getRealPageIndex(requestVO.getPage())));
     }
 
     @ResponseBody
     @RequestMapping(value = "/page", method = RequestMethod.POST)
-    public ResultVO getPageArticle(@RequestBody RequestVO requestVO) {
-        return new ResultVO(articleService.getArticleListByPage(PageUtils.getRealPageIndex(requestVO.getPage())));
+    public ResultVO getPageArticle02(@RequestBody RequestVO requestVO) {
+        return new ResultVO(articleServiceMt.getArticleListByPage(PageUtils.getRealPageIndex(requestVO.getPage())));
     }
 
     @ResponseBody
@@ -46,15 +61,33 @@ public class PublicController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/categories", method = RequestMethod.POST)
+    @RequestMapping(value = "/categories02", method = RequestMethod.POST)
     public ResultVO getPageCategory() {
         return new ResultVO(categoryService.getCategories());
     }
 
     @ResponseBody
-    @RequestMapping(value = "/category", method = RequestMethod.POST)
+    @RequestMapping(value = "/categories", method = RequestMethod.POST)
+    public ResultVO getPageCategory02() {
+        return new ResultVO(categoryServiceMt.getCategories());
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/category02", method = RequestMethod.POST)
     public ResultVO getCategory(@RequestBody RequestVO requestVO) {
         return new ResultVO(categoryService.getCategoryById(requestVO.getId()));
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/category", method = RequestMethod.POST)
+    public ResultVO getCategory02(@RequestBody RequestVO requestVO) {
+        return new ResultVO(categoryServiceMt.getCategoryById(requestVO.getId()));
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/clear/cache", method = RequestMethod.GET)
+    public ResultVO clearCache() {
+        return new ResultVO(managerService.clearCache());
     }
 
 }

@@ -2,10 +2,21 @@ package com.xinyue.blog.vo;
 
 import com.xinyue.blog.constant.QueryConstant;
 
-public class PageVO {
+import java.io.Serializable;
+
+public class PageVO implements Serializable {
     private Integer page;
     private Integer totalPage;
     private Integer pageSize = QueryConstant.PAGE_SIZE;
+    private Integer offset = 0;
+
+
+    public PageVO(Integer page) {
+        this.page = page;
+        if (page > 0) {
+            this.offset = page * pageSize;
+        }
+    }
 
     public PageVO(Integer page, Integer totalPage) {
         this.page = page;

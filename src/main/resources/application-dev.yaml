@@ -1,11 +1,11 @@
 server:
   port: 8081
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://xinyue:xinyueya@127.0.0.1:8761/eureka/
-
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: com.xinyue.blog.model    # 所有Entity别名类所在包
+  mapper-locations:
+    - classpath:mybatis/mapper/**/*.xml                       # mapper映射文件
 
 spring:
   application:
@@ -39,14 +39,20 @@ spring:
       max-request-size: "30MB"
   config:
     name: "my-blog"
-#logging:
-#  level:
-#    org:
-#      hibernate:
-#        SQL: DEBUG
+
 logging:
   level:
     root: INFO
     org:
       hibernate:
         SQL: DEBUG
+    com:
+      xinyue:
+        blog:
+          dao:
+            mybaits: DEBUG
+
+druid:
+  userName: xinyue
+  password: xinyue0706
+

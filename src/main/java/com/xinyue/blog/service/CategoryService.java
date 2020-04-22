@@ -94,7 +94,7 @@ public class CategoryService {
             Set<Article> articleSet = category.getArticles();
             List<ArticleVO> articleVOList = new ArrayList<>();
             for (Article article : articleSet) {
-                articleVOList.add(ArticleConvert.convertArticle2VO(article, false));
+                articleVOList.add(ArticleConvert.convertArticle2VO(article));
             }
             articleVOList.sort((o1, o2) -> o2.getUpdateDate().compareTo(o1.getUpdateDate()));
             categoryVO.setArticleList(articleVOList);

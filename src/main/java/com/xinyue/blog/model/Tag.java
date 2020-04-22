@@ -3,6 +3,7 @@ package com.xinyue.blog.model;
 import com.xinyue.blog.utils.StringUtils;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "tag")
-public class Tag {
+public class Tag implements Serializable {
     @Id
     @GeneratedValue
     private int id;

@@ -1,8 +1,9 @@
 package com.xinyue.blog.vo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CategoryPageVO {
+public class CategoryPageVO implements Serializable {
     private List<CategoryVO> categoryVOList;
 
     public CategoryPageVO(List<CategoryVO> categoryVOList) {

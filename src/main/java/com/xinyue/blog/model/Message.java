@@ -1,12 +1,13 @@
 package com.xinyue.blog.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
 @Table(name = "message")
-public class Message {
+public class Message implements Serializable {
     @Id
     @GeneratedValue
     private int id;

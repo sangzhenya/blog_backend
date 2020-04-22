@@ -95,4 +95,20 @@ public class ArticleVO {
     public void setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
     }
+
+    @Override
+    public String toString() {
+        return "ArticleVO{" +
+                "id=" + id +
+                ", tags=" + tags +
+                ", category=" + category +
+                ", createDate=" + createDate +
+                ", title='" + title + '\'' +
+                ", summary='" + summary + '\'' +
+                ", content='" + content + '\'' +
+                ", updateDate=" + updateDate +
+                ", preArticle=" + preArticle +
+                ", nextArticle=" + nextArticle +
+                '}';
+    }
 }
