@@ -121,7 +121,7 @@ public class ArticleService {
         return articlePageVO;
     }
 
-    @Cacheable(cacheNames = "article", key = "'article_' + #id")
+//    @Cacheable(cacheNames = "article", key = "'article_' + #id")
     public ArticleVO getArticleById(Integer id) {
         Article article = articleRepository.findByIdAndDeleteFlagFalse(id);
         ArticleVO articleVO = new ArticleVO();

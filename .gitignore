@@ -24,4 +24,6 @@
 /nbdist/
 /.nb-gradle/
 
+/file/
+
 application-prd.yaml

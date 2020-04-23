@@ -8,6 +8,9 @@ public class TagVO {
     private Integer count;
     private List<ArticleVO> articleList;
 
+    public TagVO() {
+    }
+
     public TagVO(int id, String name) {
         this.id = id;
         this.name = name;

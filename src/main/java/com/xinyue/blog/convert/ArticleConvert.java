@@ -22,8 +22,8 @@ public class ArticleConvert {
         articleVO.setTitle(article.getTitle());
         articleVO.setSummary(article.getSummary());
         articleVO.setContent(article.getContent());
-        articleVO.setCreateDate(article.getCreateDate().toLocalDateTime());
-        articleVO.setUpdateDate(article.getLastUpdateDate().toLocalDateTime());
+        articleVO.setCreateDate(article.getCreateDate());
+        articleVO.setUpdateDate(article.getLastUpdateDate());
         Category category = article.getCategory();
         if (category != null) {
             articleVO.setCategory(new CategoryVO(article.getCategory().getId(), article.getCategory().getName()));

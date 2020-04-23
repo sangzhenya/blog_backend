@@ -5,9 +5,9 @@
 
 <configuration>
 
-	<settings>
+	<!--<settings>
 		<setting name="cacheEnabled" value="true" />
-	</settings>
+	</settings>-->
 
 </configuration>
 

@@ -8,6 +8,9 @@ public class CategoryVO {
     private Integer count;
     private List<ArticleVO> articleList;
 
+    public CategoryVO() {
+    }
+
     public CategoryVO(int id, String name, int count) {
         this.id = id;
         this.name = name;

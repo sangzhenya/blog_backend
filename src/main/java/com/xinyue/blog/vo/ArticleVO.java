@@ -1,17 +1,18 @@
 package com.xinyue.blog.vo;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class ArticleVO {
     private Integer id;
     private List<TagVO> tags;
     private CategoryVO category;
-    private LocalDateTime createDate;
+    private Date createDate;
     private String title;
     private String summary;
     private String content;
-    private LocalDateTime updateDate;
+    private Date updateDate;
 
     private ArticleVO preArticle;
     private ArticleVO nextArticle;
@@ -38,14 +39,6 @@ public class ArticleVO {
 
     public void setCategory(CategoryVO category) {
         this.category = category;
-    }
-
-    public LocalDateTime getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
     }
 
     public String getTitle() {
@@ -88,11 +81,19 @@ public class ArticleVO {
         this.nextArticle = nextArticle;
     }
 
-    public LocalDateTime getUpdateDate() {
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(LocalDateTime updateDate) {
+    public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
