@@ -3,9 +3,6 @@ package com.xinyue.blog.mapper;
 import com.xinyue.blog.dao.mybaits.ArticleMapper;
 import com.xinyue.blog.dao.mybaits.CategoryMapper;
 import com.xinyue.blog.model.Article;
-import com.xinyue.blog.model.Category;
-import com.xinyue.blog.service.mybaits.CategoryServiceMt;
-import com.xinyue.blog.vo.CategoryPageVO;
 import com.xinyue.blog.vo.PageVO;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -15,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -39,7 +35,7 @@ public class MapperTest {
     @Test
     public void testFindArticleByPage() {
         PageVO pageVO = new PageVO(1);
-        List<Article> articleList = articleMapper.findArticleByPage(pageVO);
+        List<Article> articleList = articleMapper.findArticleByPageExcludeDeleted(pageVO);
         System.out.println(articleList);
     }
 
@@ -59,5 +55,10 @@ public class MapperTest {
     public void testClearMyBaitsCache() {
         Configuration config = sqlSessionFactory.getConfiguration();
         config.getCaches();
+    }
+
+    @Test
+    public void testUpdateArticle() {
+        articleMapper.disableArticle(122);
     }
 }

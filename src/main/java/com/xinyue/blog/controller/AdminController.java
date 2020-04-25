@@ -4,15 +4,13 @@ import com.xinyue.blog.constant.MessageEnum;
 import com.xinyue.blog.model.CustomerFile;
 import com.xinyue.blog.service.*;
 import com.xinyue.blog.service.security.CustomUserServiceImpl;
-import com.xinyue.blog.vo.ArticleVO;
-import com.xinyue.blog.vo.CategoryVO;
-import com.xinyue.blog.vo.MessageVO;
-import com.xinyue.blog.vo.TagVO;
+import com.xinyue.blog.vo.*;
 import com.xinyue.blog.vo.requestVO.RequestVO;
 import com.xinyue.blog.vo.requestVO.SearchVO;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -46,9 +44,8 @@ public class AdminController {
     private final MessageService messageService;
     private final CustomerFileService customerFileService;
 
-    public AdminController(CustomUserServiceImpl customUserServiceImpl, ArticleService articleService,
-                           CategoryService categoryService, TagService tagService,
-                           MessageService messageService, CustomerFileService customerFileService) {
+    public AdminController(CustomUserServiceImpl customUserServiceImpl, ArticleService articleService, CategoryService categoryService,
+                           TagService tagService, MessageService messageService, CustomerFileService customerFileService) {
         this.customUserServiceImpl = customUserServiceImpl;
         this.articleService = articleService;
         this.categoryService = categoryService;
@@ -77,12 +74,6 @@ public class AdminController {
         logger.info("Have Auth Admin? :: " + adminAuth);
 
         return "Hello World";
-    }
-
-    @ResponseBody
-    @RequestMapping("/admin/search/article")
-    public ArticleVO searchArticle(@RequestBody SearchVO searchVO) {
-        return articleService.searchArticle(searchVO.getSearchKey());
     }
 
     @ResponseBody

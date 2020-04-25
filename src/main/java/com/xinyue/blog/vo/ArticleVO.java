@@ -13,6 +13,7 @@ public class ArticleVO {
     private String summary;
     private String content;
     private Date updateDate;
+    private Boolean deleteFlag;
 
     private ArticleVO preArticle;
     private ArticleVO nextArticle;
@@ -95,6 +96,14 @@ public class ArticleVO {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public Boolean getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Boolean deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 
     @Override

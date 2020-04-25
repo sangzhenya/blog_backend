@@ -48,22 +48,6 @@ public class ArticleService {
         this.categoryService = categoryService;
     }
 
-    public ArticleVO searchArticle(String keyword) {
-        Article article = null;
-        if (!StringUtils.isEmpty(keyword)) {
-            Integer id = NumberUtils.convert2Int(keyword);
-            if (id != null) {
-                article = articleRepository.findByIdAndDeleteFlagFalse(id);
-            } else {
-                article = ListUtils.getFirstElement(articleRepository.findByTitleLikeAndDeleteFlagFalse(StringUtils.buildSearchKey(keyword)));
-            }
-        }
-        if (article != null) {
-            return ArticleConvert.convertArticle2VO(article);
-        }
-        return null;
-    }
-
     public String saveArticle(ArticleVO articleVO) {
         if (articleVO != null) {
             if (!NumberUtils.isEmptyInt(articleVO.getId())) {
@@ -121,13 +105,14 @@ public class ArticleService {
         return articlePageVO;
     }
 
-//    @Cacheable(cacheNames = "article", key = "'article_' + #id")
+    @Cacheable(cacheNames = "article", key = "'article_' + #id")
     public ArticleVO getArticleById(Integer id) {
         Article article = articleRepository.findByIdAndDeleteFlagFalse(id);
-        ArticleVO articleVO = new ArticleVO();
-        if (article != null) {
-            articleVO = ArticleConvert.convertArticle2VO(article);
+        ArticleVO articleVO;
+        if (article == null) {
+            return null;
         }
+        articleVO = ArticleConvert.convertArticle2VO(article);
         Article preArticle = articleMapper.findPreArticle(id);
         Article nextArticle = articleMapper.findNextArticle(id);
         if (preArticle != null) {

@@ -3,6 +3,7 @@ package com.xinyue.blog.vo.requestVO;
 public class RequestVO {
     private Integer id;
     private Integer page;
+    private Integer pageSize;
     private String name;
 
     public Integer getId() {
@@ -27,5 +28,13 @@ public class RequestVO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xinyue.blog.dao.mybaits.TagMapper">
+	<cache></cache>
+	<select id="findByArticleId" resultType="Tag">
+		select t.id, t.name
+		from article_tag ag left join tag t on ag.tag_id = t.id
+		where ag.article_id = #{id};
+	</select>
+
+	<select id="findById" resultType="Category">
+		select cg.id, cg.`name` from category cg where cg.id = #{id};
+	</select>
+
+</mapper>
+ 
+

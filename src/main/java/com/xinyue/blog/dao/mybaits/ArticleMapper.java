@@ -2,6 +2,7 @@ package com.xinyue.blog.dao.mybaits;
 
 import com.xinyue.blog.model.Article;
 import com.xinyue.blog.vo.PageVO;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,9 +13,9 @@ import java.util.List;
  */
 @Repository
 public interface ArticleMapper {
-    List<Article> findArticleByPage(PageVO page);
+    List<Article> findArticleByPageExcludeDeleted(PageVO page);
 
-    Integer getTotalCount();
+    Integer getTotalCountExcludeDeleted();
 
     List<Article> findArticleByCategoryId(Integer id);
 
@@ -22,4 +23,15 @@ public interface ArticleMapper {
 
     Article findPreArticle(Integer id);
 
+    List<Article> findArticleByPage(PageVO pageVO);
+
+    Integer getTotalCount();
+
+    Article findById(Integer id);
+
+    List<Article> findByTitle(String name);
+
+    void enableArticle(Integer id);
+
+    void disableArticle(Integer id);
 }

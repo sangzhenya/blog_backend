@@ -3,9 +3,10 @@ package com.xinyue.blog.controller;
 import com.xinyue.blog.service.ArticleService;
 import com.xinyue.blog.service.CategoryService;
 import com.xinyue.blog.service.ManagerService;
-import com.xinyue.blog.service.mybaits.ArticleServiceMt;
+import com.xinyue.blog.service.mybaits.ArticleMtServiceImpl;
 import com.xinyue.blog.service.mybaits.CategoryServiceMt;
 import com.xinyue.blog.utils.PageUtils;
+import com.xinyue.blog.vo.PageVO;
 import com.xinyue.blog.vo.ResultVO;
 import com.xinyue.blog.vo.requestVO.RequestVO;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ public class PublicController {
     private final ArticleService articleService;
     private final CategoryService categoryService;
     private final CategoryServiceMt categoryServiceMt;
-    private final ArticleServiceMt articleServiceMt;
+    private final ArticleMtServiceImpl articleMtServiceImpl;
     private final ManagerService managerService;
 
     @RequestMapping("/")
@@ -34,11 +35,11 @@ public class PublicController {
     }
 
     @Autowired
-    public PublicController(ArticleService articleService, CategoryService categoryService, CategoryServiceMt categoryServiceMt, ArticleServiceMt articleServiceMt, ManagerService managerService) {
+    public PublicController(ArticleService articleService, CategoryService categoryService, CategoryServiceMt categoryServiceMt, ArticleMtServiceImpl articleMtServiceImpl, ManagerService managerService) {
         this.articleService = articleService;
         this.categoryService = categoryService;
         this.categoryServiceMt = categoryServiceMt;
-        this.articleServiceMt = articleServiceMt;
+        this.articleMtServiceImpl = articleMtServiceImpl;
         this.managerService = managerService;
     }
 
@@ -51,7 +52,7 @@ public class PublicController {
     @ResponseBody
     @RequestMapping(value = "/page", method = RequestMethod.POST)
     public ResultVO getPageArticle02(@RequestBody RequestVO requestVO) {
-        return new ResultVO(articleServiceMt.getArticleListByPage(PageUtils.getRealPageIndex(requestVO.getPage())));
+        return new ResultVO(articleMtServiceImpl.getArticleListByPageExcludeDeleted(new PageVO(PageUtils.getRealPageIndex(requestVO.getPage()))));
     }
 
     @ResponseBody
