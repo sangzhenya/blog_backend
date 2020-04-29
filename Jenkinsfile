@@ -21,8 +21,9 @@ pipeline {
         dir(path: '/home/ubuntu/.jenkins/workspace/blog_backend_master') {
           sh 'sudo docker build -f Dockerfile -t blog  .'
         }
-        sh 'sudo docker stop blog'
-        sh 'sudo docker rm blog'
+
+        sh 'sudo docker stop blog || echo "No need stop"'
+        sh 'sudo docker rm blog || echo "No need remove"'
         sh 'sudo docker run -p 8004:8004 --name blog -t blog'
       }
     }
