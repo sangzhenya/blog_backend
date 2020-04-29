@@ -13,7 +13,7 @@ spring:
   datasource:
     type: "com.alibaba.druid.pool.DruidDataSource"
     druid:
-      url: "jdbc:mysql://localhost:3306/website?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC"
+      url: "jdbc:mysql://192.168.0.110:3306/website?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC"
       username: "xinyue"
       password: "123456"
       initial-size: 5

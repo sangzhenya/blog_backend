@@ -10,7 +10,6 @@ import com.xinyue.blog.vo.requestVO.SearchVO;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -43,15 +42,17 @@ public class AdminController {
     private final TagService tagService;
     private final MessageService messageService;
     private final CustomerFileService customerFileService;
+    private final ManagerService managerService;
 
     public AdminController(CustomUserServiceImpl customUserServiceImpl, ArticleService articleService, CategoryService categoryService,
-                           TagService tagService, MessageService messageService, CustomerFileService customerFileService) {
+                           TagService tagService, MessageService messageService, CustomerFileService customerFileService, ManagerService managerService) {
         this.customUserServiceImpl = customUserServiceImpl;
         this.articleService = articleService;
         this.categoryService = categoryService;
         this.tagService = tagService;
         this.messageService = messageService;
         this.customerFileService = customerFileService;
+        this.managerService = managerService;
     }
 
 
@@ -91,12 +92,14 @@ public class AdminController {
     @ResponseBody
     @RequestMapping("/admin/save/article")
     public String saveArticle(@RequestBody ArticleVO article) {
+        managerService.clearCache();
         return articleService.saveArticle(article);
     }
 
     @ResponseBody
     @RequestMapping("/admin/delete/article")
     public String deleteArticle(@RequestBody RequestVO requestVO) {
+        managerService.clearCache();
         return articleService.deleteArticle(requestVO.getId());
     }
 
