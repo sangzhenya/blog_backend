@@ -1,16 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage('Git Pull') {
-      steps {
-        dir(path: '/home/ubuntu/docker/blog_backend/') {
-          git 'https://github.com/sangzhenya/blog_backend.git'
-        }
-
-        echo 'Start process'
-      }
-    }
-
     stage('Build ') {
       steps {
         dir(path: '/home/ubuntu/docker/blog_backend') {
