@@ -29,7 +29,7 @@ pipeline {
 
         sh 'sudo docker stop blog || echo "No need stop"'
         sh 'sudo docker rm blog || echo "No need remove"'
-        sh 'sudo docker run -p 8004:8004 --name blog -t blog'
+        sh 'sudo docker run -d -p 8004:8004 --name blog -t blog'
       }
     }
 
