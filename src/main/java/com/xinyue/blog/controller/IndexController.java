@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 /**
  * @author sangz
@@ -16,6 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 public class IndexController {
     @RequestMapping("/")
     public String info(HttpServletRequest request) {
-        return "If you see this means server start success.";
+        return "If you see this means server start success::" + LocalDateTime.now();
     }
 }
