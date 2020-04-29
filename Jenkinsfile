@@ -1,9 +1,15 @@
 pipeline {
   agent any
   stages {
+    stage('End') {
+      steps {
+        echo 'End start'
+      }
+    }
+
     stage('Build ') {
       steps {
-        dir(path: '/home/ubuntu/docker/blog_backend') {
+        dir(path: '/home/ubuntu/.jenkins/workspace/blog_backend_master') {
           sh 'mvn clean package -Dmaven.test.skip=true'
         }
 
@@ -12,7 +18,9 @@ pipeline {
 
     stage('Docker') {
       steps {
-        sh 'sudo docker build -f Dockerfile -t blog  .'
+        dir(path: '/home/ubuntu/.jenkins/workspace/blog_backend_master') {
+          sh 'sudo docker build -f Dockerfile -t blog  .'
+        }
         sh 'sudo docker stop blog'
         sh 'sudo docker rm blog'
         sh 'sudo docker run -p 8004:8004 --name blog -t blog'
