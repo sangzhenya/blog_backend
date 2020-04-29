@@ -4,11 +4,9 @@ pipeline {
     stage('Start') {
       steps {
         echo 'End start'
-        dir(path: '/home/ubuntu/.jenkins/workspace/blog_backend_master/src/main/resource') {
-          sh 'ls'
+        dir(path: '/home/ubuntu/.jenkins/workspace/blog_backend_master/src/main/resources') {
           sh '''cp /home/ubuntu/resource/application-prd.yaml .
 '''
-          sh 'ls'
         }
 
       }
