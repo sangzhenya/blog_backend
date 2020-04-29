@@ -4,10 +4,13 @@ pipeline {
     stage('Start') {
       steps {
         echo 'End start'
-
         dir(path: '/home/ubuntu/.jenkins/workspace/blog_backend_master/src/main/resource') {
-          sh 'cp /home/ubuntu/resource/application-prd.yaml .'
+          sh 'ls'
+          sh '''cp /home/ubuntu/resource/application-prd.yaml .
+'''
+          sh 'ls'
         }
+
       }
     }
 
@@ -16,6 +19,7 @@ pipeline {
         dir(path: '/home/ubuntu/.jenkins/workspace/blog_backend_master') {
           sh 'mvn clean package -Dmaven.test.skip=true'
         }
+
       }
     }
 
