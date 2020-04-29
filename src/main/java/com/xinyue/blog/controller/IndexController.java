@@ -16,6 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 public class IndexController {
     @RequestMapping("/")
     public String info(HttpServletRequest request) {
-        return "If you see this means server start success. Test";
+        return "If you see this means server start success.";
     }
 }
