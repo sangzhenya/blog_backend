@@ -17,6 +17,6 @@ import java.time.LocalDateTime;
 public class IndexController {
     @RequestMapping("/")
     public String info(HttpServletRequest request) {
-        return "If you see this means server start success::" + LocalDateTime.now();
+        return "Hello:" + request.getRequestURI() + "If you see this means server start success, " + LocalDateTime.now();
     }
 }
