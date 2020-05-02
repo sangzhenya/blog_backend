@@ -31,7 +31,7 @@ public class ArticleMtServiceImpl implements ArticleMtService {
 
 
     @Override
-    @Cacheable(cacheNames = "article", key = "'article_page' + #page")
+    @Cacheable(cacheNames = "article", key = "'article_page' + #pageVO.page")
     public ArticlePageVO getArticleListByPageExcludeDeleted(PageVO pageVO) {
         List<Article> articleList = articleMapper.findArticleByPageExcludeDeleted(pageVO);
         ArticlePageVO articlePageVO = new ArticlePageVO();
