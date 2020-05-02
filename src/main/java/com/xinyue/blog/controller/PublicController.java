@@ -46,13 +46,13 @@ public class PublicController {
     @ResponseBody
     @RequestMapping(value = "/page02", method = RequestMethod.POST)
     public ResultVO getPageArticle(@RequestBody RequestVO requestVO) {
-        return new ResultVO(articleService.getArticleListByPage(PageUtils.getRealPageIndex(requestVO.getPage())));
+        return new ResultVO(articleService.getArticleListByPage(requestVO.getPage()));
     }
 
     @ResponseBody
     @RequestMapping(value = "/page", method = RequestMethod.POST)
     public ResultVO getPageArticle02(@RequestBody RequestVO requestVO) {
-        return new ResultVO(articleMtServiceImpl.getArticleListByPageExcludeDeleted(new PageVO(PageUtils.getRealPageIndex(requestVO.getPage()))));
+        return new ResultVO(articleMtServiceImpl.getArticleListByPageExcludeDeleted(new PageVO(requestVO.getPage())));
     }
 
     @ResponseBody
