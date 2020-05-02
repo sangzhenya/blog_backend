@@ -13,7 +13,9 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -51,20 +53,18 @@ public class ArticleMtServiceImpl implements ArticleMtService {
     }
 
     @Override
-    public ArticleVO searchArticle(String keyword) {
-        Article article = null;
+    public List<ArticleVO> searchArticle(String keyword) {
+        List<Article> articleList = new ArrayList<>();
         if (!StringUtils.isEmpty(keyword)) {
             Integer id = NumberUtils.convert2Int(keyword);
             if (id != null) {
-                article = articleMapper.findById(id);
+                articleList.add(articleMapper.findById(id));
             } else {
-                article = ListUtils.getFirstElement(articleMapper.findByTitle(keyword));
+                articleList = articleMapper.findByTitle(keyword);
             }
         }
-        if (article != null) {
-            return ArticleConvert.convertArticle2VO(article);
-        }
-        return null;
+        return articleList.stream().filter(Objects::nonNull)
+                .map(ArticleConvert::convertArticle2VO).collect(Collectors.toList());
     }
 
     @Override
