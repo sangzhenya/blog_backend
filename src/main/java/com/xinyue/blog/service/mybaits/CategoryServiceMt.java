@@ -5,18 +5,17 @@ import com.xinyue.blog.dao.mybaits.ArticleMapper;
 import com.xinyue.blog.dao.mybaits.CategoryMapper;
 import com.xinyue.blog.model.Article;
 import com.xinyue.blog.model.Category;
-import com.xinyue.blog.utils.CollectionUtils;
 import com.xinyue.blog.vo.ArticleVO;
 import com.xinyue.blog.vo.CategoryPageVO;
 import com.xinyue.blog.vo.CategoryVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author sangz

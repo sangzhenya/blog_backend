@@ -1,11 +1,12 @@
 package com.xinyue.blog.service;
 
-import com.xinyue.blog.utils.CollectionUtils;
 import org.apache.ibatis.cache.Cache;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.util.Objects;
 
 /**
  * @author sangz
@@ -24,7 +25,7 @@ public class ManagerService {
 
     public String clearCache() {
         if (!CollectionUtils.isEmpty(cacheManager.getCacheNames())) {
-            cacheManager.getCacheNames().parallelStream().filter(name -> cacheManager.getCache(name) != null).forEach(name -> cacheManager.getCache(name).clear());
+            cacheManager.getCacheNames().parallelStream().filter(name -> cacheManager.getCache(name) != null).forEach(name -> Objects.requireNonNull(cacheManager.getCache(name)).clear());
         }
         if (!CollectionUtils.isEmpty(sqlSessionFactory.getConfiguration().getCaches())) {
             sqlSessionFactory.getConfiguration().getCaches().parallelStream().forEach(Cache::clear);

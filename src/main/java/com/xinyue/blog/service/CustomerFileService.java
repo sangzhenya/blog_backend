@@ -3,10 +3,10 @@ package com.xinyue.blog.service;
 import com.xinyue.blog.dao.FileRepository;
 import com.xinyue.blog.model.CustomerFile;
 import com.xinyue.blog.model.Message;
-import com.xinyue.blog.utils.CollectionUtils;
 import com.xinyue.blog.utils.NumberUtils;
 import com.xinyue.blog.vo.CustomerFileVO;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;

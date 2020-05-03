@@ -39,6 +39,8 @@ spring:
       max-request-size: "30MB"
   config:
     name: "my-blog"
+  redis:
+    host: localhost
 
 logging:
   level:
@@ -54,5 +56,4 @@ logging:
 
 druid:
   userName: xinyue
-  password: xinyue0706
-
+  password: 123456

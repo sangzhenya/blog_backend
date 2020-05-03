@@ -5,21 +5,19 @@ import com.xinyue.blog.convert.ArticleConvert;
 import com.xinyue.blog.dao.CategoryRepository;
 import com.xinyue.blog.model.Article;
 import com.xinyue.blog.model.Category;
-import com.xinyue.blog.utils.CollectionUtils;
-import com.xinyue.blog.utils.StringUtils;
 import com.xinyue.blog.vo.ArticleVO;
 import com.xinyue.blog.vo.CategoryPageVO;
 import com.xinyue.blog.vo.CategoryVO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
-import static java.util.Comparator.*;
 
 /**
  * @author sangz
@@ -37,7 +35,7 @@ public class CategoryService {
     public List<CategoryVO> searchCategory(String searchKey) {
         List<CategoryVO> categoryVOList = new ArrayList<>();
         if (!StringUtils.isEmpty(searchKey)) {
-            List<Category> categoryList = categoryRepository.findByNameLike(StringUtils.buildSearchKey(searchKey));
+            List<Category> categoryList = categoryRepository.findByNameLike("%" + searchKey + "%");
             if (!CollectionUtils.isEmpty(categoryList)) {
                 for (Category category : categoryList) {
                     categoryVOList.add(new CategoryVO(category.getId(), category.getName()));

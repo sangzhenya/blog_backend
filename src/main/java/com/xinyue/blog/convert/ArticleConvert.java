@@ -4,13 +4,12 @@ package com.xinyue.blog.convert;
 import com.xinyue.blog.model.Article;
 import com.xinyue.blog.model.Category;
 import com.xinyue.blog.model.Tag;
-import com.xinyue.blog.utils.CollectionUtils;
-import com.xinyue.blog.utils.StringUtils;
 import com.xinyue.blog.vo.ArticleVO;
 import com.xinyue.blog.vo.CategoryVO;
 import com.xinyue.blog.vo.TagVO;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.CollectionUtils;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;

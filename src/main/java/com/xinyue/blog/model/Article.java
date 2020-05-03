@@ -1,6 +1,6 @@
 package com.xinyue.blog.model;
 
-import com.xinyue.blog.utils.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -145,8 +145,8 @@ public class Article implements Serializable {
         if (obj instanceof Article) {
             Article newArticle = (Article) obj;
             return this.id == newArticle.getId()
-                    && StringUtils.isEquals(this.title, newArticle.getTitle())
-                    && StringUtils.isEquals(this.summary, newArticle.getSummary());
+                    && StringUtils.equals(this.title, newArticle.getTitle())
+                    && StringUtils.equals(this.summary, newArticle.getSummary());
         }
         return false;
     }

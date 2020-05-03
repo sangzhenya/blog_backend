@@ -1,6 +1,6 @@
 package com.xinyue.blog.model;
 
-import com.xinyue.blog.utils.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -62,7 +62,7 @@ public class Tag implements Serializable {
         if (obj instanceof Tag) {
             Tag newTag = (Tag) obj;
             return this.id == newTag.getId()
-                    && StringUtils.isEquals(this.name, newTag.getName());
+                    && StringUtils.equals(this.name, newTag.getName());
         }
         return false;
     }

@@ -3,10 +3,10 @@ package com.xinyue.blog.service;
 import com.xinyue.blog.constant.MessageEnum;
 import com.xinyue.blog.dao.TagRepository;
 import com.xinyue.blog.model.Tag;
-import com.xinyue.blog.utils.CollectionUtils;
-import com.xinyue.blog.utils.StringUtils;
 import com.xinyue.blog.vo.TagVO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class TagService {
     public List<TagVO> searchTag(String searchKey) {
         List<TagVO> tagVOList = new ArrayList<>();
         if (!StringUtils.isEmpty(searchKey)) {
-            List<Tag> tagList = tagRepository.findByNameLike(StringUtils.buildSearchKey(searchKey));
+            List<Tag> tagList = tagRepository.findByNameLike("%" + searchKey + "%");
             if (!CollectionUtils.isEmpty(tagList)) {
                 for (Tag tag : tagList) {
                     tagVOList.add(new TagVO(tag.getId(), tag.getName()));
