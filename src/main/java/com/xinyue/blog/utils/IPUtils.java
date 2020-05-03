@@ -2,9 +2,6 @@ package com.xinyue.blog.utils;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * Created by Xinyue on 2017/3/1.
- */
 public class IPUtils {
     private static final String[] PROXY_REMOTE_IP_ADDRESS = {"X-Forwarded-For", "X-Real-IP"};
 

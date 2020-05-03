@@ -2,9 +2,6 @@ package com.xinyue.blog.utils;
 
 import org.json.JSONObject;
 
-/**
- * @author sangz
- */
 public class JSONResult {
     public static String fillResultStringNew(Integer status, String message, Object rawResult){
         return fillResultJSON(status, message, rawResult).toString();

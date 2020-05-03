@@ -9,9 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 
-/**
- * @author sangz
- */
 public class PageUtils {
     public static Integer getRealPageIndex(Integer page) {
         if (page == null || page <= 0) {
