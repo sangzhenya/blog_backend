@@ -1,6 +1,8 @@
 package com.xinyue.blog.vo;
 
-public class CustomerFileVO {
+import java.io.Serializable;
+
+public class CustomerFileVO  implements Serializable {
     private int id;
     private String fileName;
     private Double fileSize = 0d;

@@ -1,9 +1,10 @@
 package com.xinyue.blog.vo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class MessageVO {
+public class MessageVO  implements Serializable {
     private int id;
     private String content;
     private LocalDateTime lastUpdateDate;

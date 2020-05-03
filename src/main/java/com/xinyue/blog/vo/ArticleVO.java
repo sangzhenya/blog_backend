@@ -1,10 +1,11 @@
 package com.xinyue.blog.vo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
-public class ArticleVO {
+public class ArticleVO  implements Serializable {
     private Integer id;
     private List<TagVO> tags;
     private CategoryVO category;

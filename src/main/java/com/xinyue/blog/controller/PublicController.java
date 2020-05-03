@@ -1,11 +1,10 @@
 package com.xinyue.blog.controller;
 
-import com.xinyue.blog.service.ArticleService;
+import com.xinyue.blog.service.ArticleServiceImpl;
 import com.xinyue.blog.service.CategoryService;
 import com.xinyue.blog.service.ManagerService;
 import com.xinyue.blog.service.mybaits.ArticleMtServiceImpl;
 import com.xinyue.blog.service.mybaits.CategoryServiceMt;
-import com.xinyue.blog.utils.PageUtils;
 import com.xinyue.blog.vo.PageVO;
 import com.xinyue.blog.vo.ResultVO;
 import com.xinyue.blog.vo.requestVO.RequestVO;
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class PublicController {
     private final Logger logger = LoggerFactory.getLogger(PublicController.class);
 
-    private final ArticleService articleService;
+    private final ArticleServiceImpl articleServiceImpl;
     private final CategoryService categoryService;
     private final CategoryServiceMt categoryServiceMt;
     private final ArticleMtServiceImpl articleMtServiceImpl;
@@ -35,8 +34,8 @@ public class PublicController {
     }
 
     @Autowired
-    public PublicController(ArticleService articleService, CategoryService categoryService, CategoryServiceMt categoryServiceMt, ArticleMtServiceImpl articleMtServiceImpl, ManagerService managerService) {
-        this.articleService = articleService;
+    public PublicController(ArticleServiceImpl articleServiceImpl, CategoryService categoryService, CategoryServiceMt categoryServiceMt, ArticleMtServiceImpl articleMtServiceImpl, ManagerService managerService) {
+        this.articleServiceImpl = articleServiceImpl;
         this.categoryService = categoryService;
         this.categoryServiceMt = categoryServiceMt;
         this.articleMtServiceImpl = articleMtServiceImpl;
@@ -46,7 +45,7 @@ public class PublicController {
     @ResponseBody
     @RequestMapping(value = "/page02", method = RequestMethod.POST)
     public ResultVO getPageArticle(@RequestBody RequestVO requestVO) {
-        return new ResultVO(articleService.getArticleListByPage(requestVO.getPage()));
+        return new ResultVO(articleServiceImpl.getArticleListByPage(requestVO.getPage()));
     }
 
     @ResponseBody
@@ -58,7 +57,7 @@ public class PublicController {
     @ResponseBody
     @RequestMapping(value = "/article", method = RequestMethod.POST)
     public ResultVO getArticle(@RequestBody RequestVO requestVO) {
-        return new ResultVO(articleService.getArticleById(requestVO.getId()));
+        return new ResultVO(articleServiceImpl.getArticleById(requestVO.getId()));
     }
 
     @ResponseBody

@@ -1,8 +1,9 @@
 package com.xinyue.blog.vo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CategoryVO {
+public class CategoryVO  implements Serializable {
     private int id;
     private String name;
     private Integer count;

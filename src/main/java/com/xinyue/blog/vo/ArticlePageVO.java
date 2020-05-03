@@ -1,8 +1,9 @@
 package com.xinyue.blog.vo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ArticlePageVO {
+public class ArticlePageVO implements Serializable {
     private List<ArticleVO> articles;
     private PageVO page;
 

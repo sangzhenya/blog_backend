@@ -3,7 +3,9 @@ package com.xinyue.blog.vo;
 import com.xinyue.blog.constant.MessageEnum;
 import com.xinyue.blog.constant.StatusEnum;
 
-public class ResultVO {
+import java.io.Serializable;
+
+public class ResultVO  implements Serializable {
     private Integer status;
     private String message;
     private Object data;

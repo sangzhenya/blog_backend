@@ -1,8 +1,9 @@
 package com.xinyue.blog.vo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class TagVO {
+public class TagVO  implements Serializable {
     private Integer id;
     private String name;
     private Integer count;

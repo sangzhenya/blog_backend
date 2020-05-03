@@ -44,7 +44,7 @@ public class AdminController {
     private final CustomerFileService customerFileService;
     private final ManagerService managerService;
 
-    public AdminController(CustomUserServiceImpl customUserServiceImpl, ArticleService articleService, CategoryService categoryService,
+    public AdminController(CustomUserServiceImpl customUserServiceImpl, ArticleServiceImpl articleService, CategoryService categoryService,
                            TagService tagService, MessageService messageService, CustomerFileService customerFileService, ManagerService managerService) {
         this.customUserServiceImpl = customUserServiceImpl;
         this.articleService = articleService;

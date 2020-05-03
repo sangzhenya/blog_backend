@@ -1,6 +1,5 @@
 package com.xinyue.blog.utils;
 
-import com.xinyue.blog.service.ArticleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
