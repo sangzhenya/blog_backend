@@ -11,6 +11,7 @@ import com.xinyue.blog.vo.requestVO.RequestVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -26,6 +27,9 @@ public class PublicController {
     private final CategoryServiceMt categoryServiceMt;
     private final ArticleMtServiceImpl articleMtServiceImpl;
     private final ManagerService managerService;
+    @Autowired
+    private CacheManager cacheManager;
+
 
     @RequestMapping("/")
     public String info() {
@@ -51,6 +55,7 @@ public class PublicController {
     @ResponseBody
     @RequestMapping(value = "/page", method = RequestMethod.POST)
     public ResultVO getPageArticle02(@RequestBody RequestVO requestVO) {
+        logger.info(String.valueOf(cacheManager.getCacheNames()));
         return new ResultVO(articleMtServiceImpl.getArticleListByPageExcludeDeleted(new PageVO(requestVO.getPage())));
     }
 

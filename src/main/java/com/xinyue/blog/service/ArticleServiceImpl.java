@@ -100,7 +100,7 @@ public class ArticleServiceImpl implements ArticleService{
     @Override
     public ArticlePageVO getArticleListByPage(Integer page) {
         Pageable pageable = PageRequest.of(page, QueryConstant.PAGE_SIZE,
-                new Sort(Sort.Direction.DESC, "lastUpdateDate"));
+                Sort.by(new Sort.Order(Sort.Direction.DESC, "lastUpdateDate")));
         Page<Article> articlePage = articleRepository.findAllByDeleteFlagFalse(pageable);
         ArticlePageVO articlePageVO = new ArticlePageVO();
         List<ArticleVO> articleVOList = new ArrayList<>();
